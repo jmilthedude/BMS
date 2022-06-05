@@ -8,8 +8,6 @@ public class BMSApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BMSApplication.class, args);
-
-        //test
     }
 
 }
