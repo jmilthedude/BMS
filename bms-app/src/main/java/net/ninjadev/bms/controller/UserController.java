@@ -3,6 +3,8 @@ package net.ninjadev.bms.controller;
 import net.ninjadev.bms.model.User;
 import net.ninjadev.bms.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,22 +28,26 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable long id) {
-        return userRepository.findById(id).orElse(null);
+    public ResponseEntity<User> getUser(@PathVariable long id) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping("/add")
-    public User createUser(@RequestBody User user) {
-        return userRepository.save(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        return ResponseEntity.ok(userRepository.save(user));
     }
 
     @PostMapping("/remove/{id}")
-    public User removeUser(@PathVariable long id) {
+    public ResponseEntity<User> removeUser(@PathVariable long id) {
         User user = userRepository.findById(id).orElse(null);
         if (user != null) {
-            userRepository.delete(user);
+            return ResponseEntity.ok(user);
         }
-        return user;
+        return ResponseEntity.notFound().build();
     }
 
 }
