@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import EmployeeService from "../services/UserService";
+import UserService from "../services/UserService";
 
 class ListUserComponent extends Component {
 
@@ -12,7 +12,7 @@ class ListUserComponent extends Component {
     }
 
     componentDidMount() {
-        EmployeeService.getUsers().then((res) => {
+        UserService.getUsers().then((res) => {
             this.setState({users: res.data});
         });
     }
