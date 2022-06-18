@@ -10,8 +10,8 @@ class FooterComponent extends Component {
     render() {
         return (
             <div>
-                <footer className={"footer"}>
-                    <span className={"text-muted"}>All Rights Reserved 2022 @jmilthedude</span>
+                <footer className={"bms-footer"}>
+                    <p>All Rights Reserved 2022 @jmilthedude</p>
                 </footer>
 
             </div>
