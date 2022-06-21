@@ -1,5 +1,4 @@
 import './styles/App.css';
-import './styles/header.css';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import HeaderComponent from "./components/HeaderComponent";
 import ListUserComponent from "./components/ListUserComponent";

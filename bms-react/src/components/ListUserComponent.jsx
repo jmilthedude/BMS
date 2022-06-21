@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import UserService from "../services/UserService";
+import 'bootstrap/dist/css/bootstrap.css'
 
 class ListUserComponent extends Component {
 
