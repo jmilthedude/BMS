@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 public class UserController {
 
     private final UserRepository userRepository;
@@ -27,7 +27,7 @@ public class UserController {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<User> getUser(@PathVariable long id) {
         User user = userRepository.findById(id).orElse(null);
         if (user != null) {
@@ -36,12 +36,12 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/add")
+    @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         return ResponseEntity.ok(userRepository.save(user));
     }
 
-    @PostMapping("/remove/{id}")
+    @PostMapping("/users/{id}")
     public ResponseEntity<User> removeUser(@PathVariable long id) {
         User user = userRepository.findById(id).orElse(null);
         if (user != null) {
