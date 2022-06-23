@@ -23,8 +23,8 @@ public class UserController {
     }
 
     @GetMapping()
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(userRepository.findAll());
     }
 
     @GetMapping("/{id}")
