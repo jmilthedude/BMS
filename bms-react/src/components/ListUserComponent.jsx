@@ -3,7 +3,7 @@ import UserService from "../services/UserService";
 import 'bootstrap/dist/css/bootstrap.css';
 import {useNavigate} from 'react-router-dom';
 
-function ListUserComponent() {
+const ListUserComponent = () => {
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
 
