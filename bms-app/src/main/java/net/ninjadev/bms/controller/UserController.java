@@ -3,8 +3,6 @@ package net.ninjadev.bms.controller;
 import net.ninjadev.bms.model.User;
 import net.ninjadev.bms.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
