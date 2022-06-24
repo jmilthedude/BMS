@@ -22,7 +22,7 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping()
+    @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userRepository.findAll());
     }

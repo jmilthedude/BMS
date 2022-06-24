@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import HeaderComponent from "./components/HeaderComponent";
 import ListUserComponent from "./components/ListUserComponent";
 import FooterComponent from "./components/FooterComponent";
+import CreateUserComponent from "./components/CreateUserComponent";
 
 function App() {
     return (
@@ -11,8 +12,9 @@ function App() {
                 <HeaderComponent/>
                 <div className="container">
                     <Routes>
-                        <Route path={"/"} element={<ListUserComponent/>}/>
+                        <Route path={"/"} exact element={<ListUserComponent/>}/>
                         <Route path={"/users"} element={<ListUserComponent/>}/>
+                        <Route path={"/create-user"} element={<CreateUserComponent/>}/>
                     </Routes>
                 </div>
                 <FooterComponent/>
