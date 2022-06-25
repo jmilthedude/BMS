@@ -1,10 +1,12 @@
 package net.ninjadev.bms.controller;
 
+import net.ninjadev.bms.exception.ResourceNotFoundException;
 import net.ninjadev.bms.model.User;
 import net.ninjadev.bms.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.util.List;
 
@@ -27,11 +29,18 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUser(@PathVariable long id) {
-        User user = userRepository.findById(id).orElse(null);
-        if (user != null) {
-            return ResponseEntity.ok(user);
-        }
-        return ResponseEntity.notFound().build();
+        User user = getUserById(id);
+
+        return ResponseEntity.ok(user);
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User userDetails) {
+        User user = getUserById(id);
+        user.setFirstName(userDetails.getFirstName());
+        user.setLastName(userDetails.getLastName());
+        user.setEmailId(userDetails.getEmailId());
+        return ResponseEntity.ok(userRepository.save(user));
     }
 
     @PostMapping("/users")
@@ -41,12 +50,13 @@ public class UserController {
 
     @PostMapping("/users/{id}")
     public ResponseEntity<User> removeUser(@PathVariable long id) {
-        User user = userRepository.findById(id).orElse(null);
-        if (user != null) {
-            userRepository.delete(user);
-            return ResponseEntity.ok(user);
-        }
-        return ResponseEntity.notFound().build();
+        User user = getUserById(id);
+        userRepository.delete(user);
+        return ResponseEntity.ok(user);
+    }
+
+    private User getUserById(long id) {
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No user found by that ID: " + id));
     }
 
 }
