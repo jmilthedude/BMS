@@ -13,6 +13,18 @@ const ListUserComponent = () => {
         });
     }, []);
 
+    function deleteUser(user) {
+        let flag = window.confirm('Are you sure you want to remove ' + user.firstName);
+        if (flag) {
+            UserService.deleteUserById(user.id).then((res) => {
+                alert('User Deleted.');
+                window.location.reload();
+            }).catch((error) => {
+                alert('Unable to delete. Error: ' + error);
+            });
+        }
+    }
+
     return (
         <div>
             <h2 className="text-center">User List</h2>
@@ -32,10 +44,14 @@ const ListUserComponent = () => {
                     <tbody>
                     {
                         users.map(
-                            users => <tr key={users.id}>
-                                <td> {users.firstName}</td>
-                                <td> {users.lastName}</td>
-                                <td> {users.emailId}</td>
+                            user => <tr key={user.id}>
+                                <td> {user.firstName}</td>
+                                <td> {user.lastName}</td>
+                                <td> {user.emailId}</td>
+                                <td>
+                                    <button className={"btn btn-danger"} onClick={() => deleteUser(user)}>Delete
+                                    </button>
+                                </td>
                             </tr>
                         )
                     }

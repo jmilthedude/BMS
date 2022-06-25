@@ -43,6 +43,7 @@ public class UserController {
     public ResponseEntity<User> removeUser(@PathVariable long id) {
         User user = userRepository.findById(id).orElse(null);
         if (user != null) {
+            userRepository.delete(user);
             return ResponseEntity.ok(user);
         }
         return ResponseEntity.notFound().build();
