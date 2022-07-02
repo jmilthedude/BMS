@@ -1,34 +1,59 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import UserService from "../services/UserService";
 
-const CreateUserComponent = () => {
+const UpsertUserComponent = () => {
     const navigate = useNavigate();
+    const {id} = useParams();
+    const [loading, setLoading] = useState(false);
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [emailId, setEmailId] = useState('');
 
     useEffect(() => {
+        if (id) {
+            loadUser().then((response) => {
+                setFirstName(response.data.firstName);
+                setLastName(response.data.lastName);
+                setEmailId(response.data.emailId);
+            });
+        }
 
     }, []);
 
-    function onChangeFirstName (event) {
+    const loadUser = async () => {
+        setLoading(true);
+
+        const response = await UserService.getUserById(id);
+
+        setLoading(false);
+        return response;
+    }
+
+    function onChangeFirstName(event) {
         setFirstName(event.target.value);
     }
-    function onChangeLastName (event) {
+
+    function onChangeLastName(event) {
         setLastName(event.target.value);
     }
-    function onChangeEmailId (event) {
+
+    function onChangeEmailId(event) {
         setEmailId(event.target.value);
     }
-    function saveUser(e) {
+
+    async function saveUser(e) {
         e.preventDefault();
         let user = {firstName, lastName, emailId}
-        let userJson = JSON.stringify(user);
-        UserService.saveUser(user).then(navigate('/users'));
+        if (id) {
+            await UserService.updateUser(id, user).then(() => navigate('/users'));
+        } else {
+            await UserService.saveUser(user).then(() => navigate('/users'));
+        }
 
     }
+
     function cancel() {
         navigate('/users');
     }
@@ -45,7 +70,7 @@ const CreateUserComponent = () => {
                                 <div className={"form-group"}>
                                     <label>First Name:</label>
                                     <input className={"form-control"} placeholder={"First Name"} name={"firstName"}
-                                        value={firstName} onChange={onChangeFirstName}/>
+                                           value={firstName} onChange={onChangeFirstName}/>
                                     <label>Last Name:</label>
                                     <input className={"form-control"} placeholder={"Last Name"} name={"lastName"}
                                            value={lastName} onChange={onChangeLastName}/>
@@ -55,7 +80,9 @@ const CreateUserComponent = () => {
 
                                 </div>
                                 <button className={"btn btn-success"} onClick={saveUser}>Save</button>
-                                <button className={"btn btn-danger"} onClick={cancel} style={{marginLeft: "10px"}}>Cancel</button>
+                                <button className={"btn btn-danger"} onClick={cancel}
+                                        style={{marginLeft: "10px"}}>Cancel
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -66,4 +93,4 @@ const CreateUserComponent = () => {
 
 }
 
-export default CreateUserComponent;
+export default UpsertUserComponent;

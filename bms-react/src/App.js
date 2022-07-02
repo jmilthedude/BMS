@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import HeaderComponent from "./components/HeaderComponent";
 import ListUserComponent from "./components/ListUserComponent";
 import FooterComponent from "./components/FooterComponent";
-import CreateUserComponent from "./components/CreateUserComponent";
+import UpsertUserComponent from "./components/UpsertUserComponent";
 
 function App() {
     return (
@@ -14,7 +14,8 @@ function App() {
                     <Routes>
                         <Route path={"/"} exact element={<ListUserComponent/>}/>
                         <Route path={"/users"} element={<ListUserComponent/>}/>
-                        <Route path={"/create-user"} element={<CreateUserComponent/>}/>
+                        <Route path={"/upsert-user"} element={<UpsertUserComponent/>}/>
+                        <Route path={"/upsert-user/:id"} element={<UpsertUserComponent/>}/>
                     </Routes>
                 </div>
                 <FooterComponent/>

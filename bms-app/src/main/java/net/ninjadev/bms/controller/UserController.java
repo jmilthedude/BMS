@@ -10,7 +10,7 @@ import org.springframework.web.client.ResourceAccessException;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class UserController {
