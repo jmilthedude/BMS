@@ -5,7 +5,7 @@ import UserService from "../services/UserService";
 const UpsertUserComponent = () => {
     const navigate = useNavigate();
     const {id} = useParams();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -13,22 +13,31 @@ const UpsertUserComponent = () => {
 
     useEffect(() => {
         if (id) {
-            loadUser().then((response) => {
-                setFirstName(response.data.firstName);
-                setLastName(response.data.lastName);
-                setEmailId(response.data.emailId);
-            });
+            loadUser();
+        } else {
+            setLoading(false);
         }
-
     }, []);
 
     const loadUser = async () => {
-        setLoading(true);
-
+        await timer();
         const response = await UserService.getUserById(id);
-
+        setFields(response.data);
         setLoading(false);
-        return response;
+    }
+
+    function timer() {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve('Timer Complete.');
+            }, 500);
+        });
+    }
+
+    function setFields(user) {
+        setFirstName(user.firstName);
+        setLastName(user.lastName);
+        setEmailId(user.emailId);
     }
 
     function onChangeFirstName(event) {
@@ -62,31 +71,37 @@ const UpsertUserComponent = () => {
     return (
         <div>
             <div className={"container"}>
-                <div className={"row"}>
-                    <div className={"card col-md-6 offset-md-3"}>
-                        <h3 className={"text-center"}>Create User</h3>
-                        <div className={"card-body"}>
-                            <form>
-                                <div className={"form-group"}>
-                                    <label>First Name:</label>
-                                    <input className={"form-control"} placeholder={"First Name"} name={"firstName"}
-                                           value={firstName} onChange={onChangeFirstName}/>
-                                    <label>Last Name:</label>
-                                    <input className={"form-control"} placeholder={"Last Name"} name={"lastName"}
-                                           value={lastName} onChange={onChangeLastName}/>
-                                    <label>Email:</label>
-                                    <input className={"form-control"} placeholder={"Email"} name={"emailId"}
-                                           value={emailId} onChange={onChangeEmailId}/>
+                {loading === true ? (
+                    <div>
+                        <h1 className={"bms-fullscreen bms-center-text"}>LOADING...</h1>
+                    </div>
+                ) : (
+                    <div className={"row"}>
+                        <div className={"card col-md-6 offset-md-3"}>
+                            <h3 className={"text-center"}>Create User</h3>
+                            <div className={"card-body"}>
+                                <form>
+                                    <div className={"form-group"}>
+                                        <label>First Name:</label>
+                                        <input className={"form-control"} placeholder={"First Name"} name={"firstName"}
+                                               value={firstName} onChange={onChangeFirstName}/>
+                                        <label>Last Name:</label>
+                                        <input className={"form-control"} placeholder={"Last Name"} name={"lastName"}
+                                               value={lastName} onChange={onChangeLastName}/>
+                                        <label>Email:</label>
+                                        <input className={"form-control"} placeholder={"Email"} name={"emailId"}
+                                               value={emailId} onChange={onChangeEmailId}/>
 
-                                </div>
-                                <button className={"btn btn-success"} onClick={saveUser}>Save</button>
-                                <button className={"btn btn-danger"} onClick={cancel}
-                                        style={{marginLeft: "10px"}}>Cancel
-                                </button>
-                            </form>
+                                    </div>
+                                    <button className={"btn btn-success"} onClick={saveUser}>Save</button>
+                                    <button className={"btn btn-danger"} onClick={cancel}
+                                            style={{marginLeft: "10px"}}>Cancel
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     );

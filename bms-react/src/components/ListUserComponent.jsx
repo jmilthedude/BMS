@@ -31,14 +31,12 @@ const ListUserComponent = () => {
 
     return (
         <div>
-            <h2 className="text-center">User List</h2>
-            <div style={{textAlign: "right"}}>
-                <button className={"btn btn-primary"} style={{marginBottom: 5, marginLeft: 0, padding: 5}}
-                        onClick={() => navigate("/upsert-user")}>Create User
-                </button>
+            <h2>User List</h2>
+            <div>
+                <button onClick={() => navigate("/upsert-user")}>Create User</button>
             </div>
-            <div className="row">
-                <table className="table table-striped table-bordered">
+            <div>
+                <table>
                     <thead>
                     <tr>
                         <th>First Name</th>
@@ -55,11 +53,8 @@ const ListUserComponent = () => {
                                 <td> {user.lastName}</td>
                                 <td> {user.emailId}</td>
                                 <td>
-                                    <button className={"btn btn-info"} style={{marginRight: 5}}
-                                            onClick={() => updateUser(user)}>Update
-                                    </button>
-                                    <button className={"btn btn-danger"} onClick={e => deleteUser(e, user)}>Delete
-                                    </button>
+                                    <button onClick={() => updateUser(user)}>Update</button>
+                                    <button onClick={e => deleteUser(e, user)}>Delete</button>
                                 </td>
                             </tr>
                         )

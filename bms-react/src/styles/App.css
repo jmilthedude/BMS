@@ -30,12 +30,26 @@
     background-color: rgb(30, 37, 45);
     text-align: center;
     padding: 0;
-    margin:0;
+    margin: 0;
 }
 
 .bms-footer p {
     color: aliceblue;
     padding: 10px;
-    margin:0;
+    margin: 0;
     opacity: .25;
+}
+
+.bms-fullscreen {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.bms-center-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
