@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const USER_API_BASE_URL = 'http://192.168.86.69:8080/api/users';
+const USER_API_BASE_URL = process.env.REACT_APP_API_URL + '/users';
 
 class UserService {
     getUsers() {
