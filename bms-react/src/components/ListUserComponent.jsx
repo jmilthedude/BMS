@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import UserService from "../services/UserService";
 import 'bootstrap/dist/css/bootstrap.css';
 import {useNavigate} from 'react-router-dom';
+import UserService from "../services/UserService";
 
 const ListUserComponent = () => {
     const navigate = useNavigate();
@@ -31,12 +31,12 @@ const ListUserComponent = () => {
 
     return (
         <div>
-            <h2>User List</h2>
-            <div>
-                <button onClick={() => navigate("/upsert-user")}>Create User</button>
+            <h2 style={{textAlign: "center"}}>User List</h2>
+            <div style={{textAlign:"right"}}>
+                <button className={"bms-btn bms-btn-create"} onClick={() => navigate("/upsert-user")}>Create User</button>
             </div>
-            <div>
-                <table>
+            <div style={{display:"flex", justifyContent:"center"}}>
+                <table className={"bms-user-table"}>
                     <thead>
                     <tr>
                         <th>First Name</th>
@@ -53,8 +53,8 @@ const ListUserComponent = () => {
                                 <td> {user.lastName}</td>
                                 <td> {user.emailId}</td>
                                 <td>
-                                    <button onClick={() => updateUser(user)}>Update</button>
-                                    <button onClick={e => deleteUser(e, user)}>Delete</button>
+                                    <button className={"bms-btn bms-btn-update"} onClick={() => updateUser(user)}>Update</button>
+                                    <button className={"bms-btn bms-btn-delete"} onClick={e => deleteUser(e, user)}>Delete</button>
                                 </td>
                             </tr>
                         )

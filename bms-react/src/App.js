@@ -7,7 +7,7 @@ import UpsertUserComponent from "./components/UpsertUserComponent";
 
 function App() {
     return (
-        <div>
+        <div className={"dark-mode"}>
             <Router>
                 <HeaderComponent/>
                 <div className="container">
