@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import UserService from "../services/UserService";
 
-const UpsertUserComponent = () => {
+const UpsertUser = () => {
     const navigate = useNavigate();
     const {id} = useParams();
     const [loading, setLoading] = useState(true);
@@ -108,4 +108,4 @@ const UpsertUserComponent = () => {
 
 }
 
-export default UpsertUserComponent;
+export default UpsertUser;

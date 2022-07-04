@@ -10,6 +10,12 @@
     --lighten-effect: inset 0 0 100px 100px rgba(255, 255, 255, 0.3);
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
 html, body, div {
     background-color: var(--medium-color);
     color: azure;
@@ -119,7 +125,7 @@ html, body, div {
 }
 
 .bms-user-table {
-    width: 100%;
+    text-align: left;
     margin-top: 5px;
     border: 1px var(--dark-color) solid;
 }

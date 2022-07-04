@@ -1,0 +1,25 @@
+.h1 {
+  text-align: center;
+}
+
+.btnParent {
+  display: flex;
+  justify-content: right;
+  margin-right: 5px;
+}
+
+.userTable {
+}
+
+.btn {
+  min-width: 90px;
+}
+
+.btnCreate {
+  margin: 0;
+  padding: 8px;
+  border: 0;
+  border-radius: 4px;
+  background-color: var(--medium-accent-color);
+  color: var(--light-text-color);
+}

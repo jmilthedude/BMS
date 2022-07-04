@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
 import {useNavigate} from 'react-router-dom';
 import UserService from "../services/UserService";
+import styles from "../styles/listUser.module.scss";
 
-const ListUserComponent = () => {
+const ListUser = () => {
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
 
@@ -31,11 +31,11 @@ const ListUserComponent = () => {
 
     return (
         <div>
-            <h2 style={{textAlign: "center"}}>User List</h2>
-            <div style={{textAlign:"right"}}>
-                <button className={"bms-btn bms-btn-create"} onClick={() => navigate("/upsert-user")}>Create User</button>
+            <h2 className={styles.h1}>User List</h2>
+            <div className={styles.btnParent}>
+                <button className={`${styles.btnCreate} ${styles.btn}`} onClick={() => navigate("/upsert-user")}>Create User</button>
             </div>
-            <div style={{display:"flex", justifyContent:"center"}}>
+            <div className={styles.userTable}>
                 <table className={"bms-user-table"}>
                     <thead>
                     <tr>
@@ -66,4 +66,4 @@ const ListUserComponent = () => {
     );
 }
 
-export default ListUserComponent;
+export default ListUser;
