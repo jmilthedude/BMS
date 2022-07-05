@@ -2,12 +2,10 @@ import React from 'react';
 
 const Header = () => {
     return (
-        <header className={"bms-header"}>
-            <nav className={"bms-navbar"}>
-                <>
-                    <a className={"bms-navbar-name"} href="/">Budget Management System</a>
-                </>
-            </nav>
+        <header className={"navbar"}>
+            <>
+                <a className={"navbar-title"} href="/">Budget Management System</a>
+            </>
         </header>
     );
 }

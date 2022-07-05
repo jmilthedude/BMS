@@ -30,13 +30,13 @@ const ListUser = () => {
     }
 
     return (
-        <div>
-            <h2 className={styles.h1}>User List</h2>
-            <div className={styles.btnParent}>
-                <button className={`${styles.btnCreate} ${styles.btn}`} onClick={() => navigate("/upsert-user")}>Create User</button>
+        <div className={styles.card}>
+            <h2 className={styles.h2}>User List</h2>
+            <div>
+                <button className={styles.btnCreate} onClick={() => navigate("/upsert-user")}>+</button>
             </div>
-            <div className={styles.userTable}>
-                <table className={"bms-user-table"}>
+            <div>
+                <table>
                     <thead>
                     <tr>
                         <th>First Name</th>
@@ -53,8 +53,8 @@ const ListUser = () => {
                                 <td> {user.lastName}</td>
                                 <td> {user.emailId}</td>
                                 <td>
-                                    <button className={"bms-btn bms-btn-update"} onClick={() => updateUser(user)}>Update</button>
-                                    <button className={"bms-btn bms-btn-delete"} onClick={e => deleteUser(e, user)}>Delete</button>
+                                    <button onClick={() => updateUser(user)}>Update</button>
+                                    <button className={"btn-danger"} onClick={e => deleteUser(e, user)}>Delete</button>
                                 </td>
                             </tr>
                         )
