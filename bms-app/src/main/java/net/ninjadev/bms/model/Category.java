@@ -1,30 +1,26 @@
 package net.ninjadev.bms.model;
 
-import lombok.*;
-import net.ninjadev.bms.controller.TransactionController;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "users")
+@Table(name = "category")
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String firstName;
+    private String name;
 
-    private String lastName;
-
-    private String emailId;
-
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Transaction> transactions;
-
 
 }

@@ -1,0 +1,33 @@
+.userCardContainer {
+  display: grid;
+  justify-content: center;
+  grid-template-rows: auto auto auto;
+  width: 350px;
+  background-color: var(--light-color);
+  box-shadow: 3px 3px 6px black;
+  grid-template-columns: 100%;
+  border-radius: 5px;
+}
+
+.name {
+  font-size: 1.5rem;
+  padding: 5px;
+  grid-row: 1;
+  background-color: var(--light-accent-color);
+  color: var(--dark-text-color);
+  border-radius: 5px 5px 0 0;
+}
+
+.email {
+  padding: 5px;
+  grid-row: 2;
+  background-color: var(--light-color);
+}
+
+.actions {
+  grid-row: 3;
+  padding: 5px;
+  background-color: var(--light-color);
+  align-self: end;
+  justify-self: center;
+}

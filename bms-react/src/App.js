@@ -1,16 +1,17 @@
 import './styles/App.css';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import Header from "./components/Header";
-import ListUser from "./components/ListUser";
-import Footer from "./components/Footer";
-import UpsertUser from "./components/UpsertUser";
+import Header from "./components/app/Header";
+import ListUser from "./components/user/ListUser";
+import Footer from "./components/app/Footer";
+import UpsertUser from "./components/user/UpsertUser";
+import UserCard from "./components/user/UserCard";
 
 function App() {
     return (
-        <div className={"dark-mode"}>
+        <>
             <Router>
-                <Header/>
                 <div className="container">
+                <Header/>
                     <Routes>
                         <Route path={"/"} exact element={<ListUser/>}/>
                         <Route path={"/users"} element={<ListUser/>}/>
@@ -18,9 +19,8 @@ function App() {
                         <Route path={"/upsert-user/:id"} element={<UpsertUser/>}/>
                     </Routes>
                 </div>
-                <Footer/>
             </Router>
-        </div>
+        </>
 
     );
 }

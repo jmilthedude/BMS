@@ -6,14 +6,13 @@ import net.ninjadev.bms.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.ResourceAccessException;
 
 import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
-public class UserController {
+public class UserController extends BaseController {
 
     private final UserRepository userRepository;
 

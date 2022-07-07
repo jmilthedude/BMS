@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
-import UserService from "../services/UserService";
+import UserService from "../../services/UserService";
 
 const UpsertUser = () => {
     const navigate = useNavigate();
@@ -77,7 +77,7 @@ const UpsertUser = () => {
                     </div>
                 ) : (
                     <div className={"row"}>
-                        <div className={"card col-md-6 offset-md-3"}>
+                        <div className={"container col-md-6 offset-md-3"}>
                             <h3 className={"text-center"}>Create User</h3>
                             <div className={"card-body"}>
                                 <form>
