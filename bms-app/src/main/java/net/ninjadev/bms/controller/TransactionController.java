@@ -6,14 +6,17 @@ import net.ninjadev.bms.model.Transaction;
 import net.ninjadev.bms.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
-public class TransactionController extends BaseController {
+public class TransactionController {
 
     private final TransactionRepository transactionRepository;
 
@@ -45,7 +48,7 @@ public class TransactionController extends BaseController {
     }
 
     @PostMapping("/transaction")
-    public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
+    public ResponseEntity<Transaction> createTransaction(@Valid @RequestBody Transaction transaction) {
         return ResponseEntity.ok(transactionRepository.save(transaction));
     }
 
@@ -54,6 +57,11 @@ public class TransactionController extends BaseController {
         Transaction transaction = getTransactionById(id);
         transactionRepository.delete(transaction);
         return ResponseEntity.ok(transaction);
+    }
+
+    @GetMapping("/transactions/{id}")
+    public ResponseEntity<List<Transaction>> getAllTransactionsByUser(@PathVariable long userId) {
+       return ResponseEntity.ok(transactionRepository.findAll().stream().filter(transaction -> transaction.getUser().getId() == userId).collect(Collectors.toList()));
     }
 
     private Transaction getTransactionById(long id) {

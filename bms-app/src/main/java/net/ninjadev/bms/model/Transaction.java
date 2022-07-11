@@ -1,10 +1,9 @@
 package net.ninjadev.bms.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -18,15 +17,19 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private double amount;
 
     private String description;
 
+    @NotNull
     @ManyToOne
     private Category category;
 
+    @NotNull
     private Date date;
 
+    @NotNull
     @ManyToOne
     private User user;
 }

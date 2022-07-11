@@ -12,7 +12,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
-public class UserController extends BaseController {
+public class UserController {
 
     private final UserRepository userRepository;
 
